@@ -1,0 +1,97 @@
+newman
+
+ASK_E2E_test
+
+→ /sign-in - [T] signs in to application
+  POST http://ask-qa.portnov.com/api/v1/sign-in [200 OK, 892B, 214ms]
+  √  Check if 'status' code is 200
+  √  Verify if the value of 'role' is 'TEACHER'
+  √  Check if property 'token' is present
+  √  Check if response time is less than 1500 ms
+
+→ /sign-in - [S] signs in to application
+  POST http://ask-qa.portnov.com/api/v1/sign-in [200 OK, 883B, 88ms]
+  √  Check if 'status' code is 200
+  √  Verify if the value of 'role' is 'STUDENT'
+  √  Check if property 'token' is present
+  √  Check if response time is less than 1000 ms
+
+→ /quiz - [T] creates new quiz
+  POST http://ask-qa.portnov.com/api/v1/quiz [200 OK, 799B, 92ms]
+  √  Check if Status code is 200
+  √  Check if property 'id' is present
+  √  Check if response time is less than 1326 ms
+
+→ /quiz - [T] updates quiz
+  PUT http://ask-qa.portnov.com/api/v1/quiz [200 OK, 799B, 100ms]
+  √  Verify if Status code is 200
+  √  Verify the following property names:'id','createdAt' & 'updatedAt' is present in the response body
+  √  Check if response time is less than 1326 ms
+
+→ /assignment - [T] creates new assignment for a student
+  POST http://ask-qa.portnov.com/api/v1/assignment [200 OK, 1.68kB, 96ms]
+  √  Status code is 200
+  √  Check if status='ASSIGNED',result='PENDING',gradedBy='NONE' 
+  √  Response time is less than 1400 ms
+
+→ /quizzes -  [T] gets list of all quizzes
+  GET http://ask-qa.portnov.com/api/v1/quizzes [200 OK, 476.47kB, 587ms]
+  √  Verify if the Status code is 200
+  √  Verify if the quiz created by the teacher is listed in the 'List of quizzes'
+
+→ /my-assignments - [S] check the list of assignments that needs to be completed
+  GET http://ask-qa.portnov.com/api/v1/my-assignments [200 OK, 12.91kB, 93ms]
+  √  Status code is 200
+  √  Verify if assignment_Id created by teacher exists in the 'List of Assignments' section
+  √  Verify if 'status'='ASSIGNED' before submitting the assignment
+
+→ /submit-assignment - [S] submits assignment
+  POST http://ask-qa.portnov.com/api/v1/submit-assignment [200 OK, 13.32kB, 102ms]
+  √  Check if Status code is 200
+  √  Check if 'status'='GRADED' after submitting the quiz
+  √  Check if 'gradedBy'='AUTOMATIC' after submitting the quiz
+
+→ /assignment - [T] grades an assignment
+  PUT http://ask-qa.portnov.com/api/v1/assignment/14995 [200 OK, 2.06MB, 2s]
+  √  Verify if Status code is 200
+  √  Verify if Teachers summary is updated successfully
+  √  Verify if, after the teacher grades the assignment, the status is set to 'GRADED' & gradedBy='TEACHER'
+
+→ /my-grades - [S] returns list of graded/submitted assignments
+  GET http://ask-qa.portnov.com/api/v1/my-grades [200 OK, 13.38kB, 106ms]
+  √  Verify the Status code is 200
+  √  Verify if 'userId' is present for the submitted/graded assignment
+  √  Verify the status is set to 'GRADED'
+  √  Verify the response time is less than 1500 ms
+
+→ /assignment - [T] deletes the assignment
+  DELETE http://ask-qa.portnov.com/api/v1/assignment/959be5aa-14ab-4702-8ad5-d105df0b3f89 [200 OK, 764B, 93ms]
+  √  Verify if Status code is 200
+  √  Check if the status is set to 'Success' after deleting the assignment
+  √  Check if the message contains the text "Assignment was deleted"
+
+→ /quiz - [T] deletes the quiz
+  DELETE http://ask-qa.portnov.com/api/v1/quiz/12700 [200 OK, 758B, 95ms]
+  √  Verify if Status code is 200
+  √  Check if the 'message' property contains the text 'Quiz was deleted'
+  √  Check if the 'status' is set to 'success' after the teacher deletes the quiz
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │                12 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │                12 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 0 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │                38 │                0 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 5s                                         │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 2.58MB (approx)                           │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 309ms [min: 88ms, max: 2s, s.d.: 539ms] │
+└────────────────────────────────────────────────────────────────┘

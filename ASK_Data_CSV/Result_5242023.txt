@@ -1,0 +1,58 @@
+newman
+
+ASK_Data_CSV
+
+Iteration 1/5
+
+→ /sign-up - creates new user with [S] permission
+  POST http://ask-qa.portnov.com/api/v1/sign-up [200 OK, 569B, 951ms]
+  √  Status code is 200
+  √  Check if 'status' is equal to 'Success'
+
+Iteration 2/5
+
+→ /sign-up - creates new user with [S] permission
+  POST http://ask-qa.portnov.com/api/v1/sign-up [200 OK, 569B, 880ms]
+  √  Status code is 200
+  √  Check if 'status' is equal to 'Success'
+
+Iteration 3/5
+
+→ /sign-up - creates new user with [S] permission
+  POST http://ask-qa.portnov.com/api/v1/sign-up [200 OK, 569B, 941ms]
+  √  Status code is 200
+  √  Check if 'status' is equal to 'Success'
+
+Iteration 4/5
+
+→ /sign-up - creates new user with [S] permission
+  POST http://ask-qa.portnov.com/api/v1/sign-up [200 OK, 569B, 854ms]
+  √  Status code is 200
+  √  Check if 'status' is equal to 'Success'
+
+Iteration 5/5
+
+→ /sign-up - creates new user with [S] permission
+  POST http://ask-qa.portnov.com/api/v1/sign-up [200 OK, 569B, 1013ms]
+  √  Status code is 200
+  √  Check if 'status' is equal to 'Success'
+
+┌─────────────────────────┬─────────────────────┬────────────────────┐
+│                         │            executed │             failed │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              iterations │                   5 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│                requests │                   5 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│            test-scripts │                   5 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│      prerequest-scripts │                   0 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              assertions │                  10 │                  0 │
+├─────────────────────────┴─────────────────────┴────────────────────┤
+│ total run duration: 5s                                             │
+├────────────────────────────────────────────────────────────────────┤
+│ total data received: 245B (approx)                                 │
+├────────────────────────────────────────────────────────────────────┤
+│ average response time: 927ms [min: 854ms, max: 1013ms, s.d.: 56ms] │
+└────────────────────────────────────────────────────────────────────┘
